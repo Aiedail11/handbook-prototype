@@ -22,10 +22,11 @@ export default {
   padding: 0;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  background: #f4f4f4;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #fff;
 }
 a {
   color: #666;
@@ -41,4 +42,6 @@ ul {
   padding: 1rem 2rem;
   background: #fff;
 }
+
+
 </style>

@@ -1,12 +1,12 @@
 <template>
   <header class = "header">
-      <h1 class = "title">Dad Jokes</h1>
+      <h1 class = "title">CGA Handbook</h1>
       <ul>
           <li>
               <nuxt-link to='/'>Home</nuxt-link>
           </li>
           <li>
-              <nuxt-link to='/Jokes'>Jokes</nuxt-link>
+              <nuxt-link to='/Gases'>Gases</nuxt-link>
           </li>
           <li>
               <nuxt-link to='/about'>About</nuxt-link>
