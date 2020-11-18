@@ -4,7 +4,7 @@
     <div v-if="checkLogin">
       <ul>
         <li>
-          <nuxt-link to="/">Home</nuxt-link>
+          <nuxt-link to='/'>Home</nuxt-link>
         </li>
         <li>
           <button @click="toggleLogin">Login</button>
@@ -34,6 +34,10 @@
 </template>
 
 <script>
+import AuthenticationService from "../services/auth"
+
+const authService = require(AuthenticationService);
+
 export default {
   name: "AppHeader",
   data() {
@@ -44,6 +48,8 @@ export default {
   methods: {
     toggleLogin() {
       this.login = !this.login;
+      authService.login = !authService.login;
+      console.log("logged in? " + authService.login);
     }
   },
   computed: {
