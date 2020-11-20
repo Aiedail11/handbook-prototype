@@ -1,16 +1,22 @@
 <template>
   <div class="monograph" v-if="verifySymbol">
-    <div v-for="symbol in symbols" :key="symbol.index">
-      <h2>{{symbol.letters}}</h2>
-      <h2 v-if="symbol.quantity >1">
-        <sub>{{symbol.quantity}}</sub>
-      </h2>
-    </div>
-    <h3>{{name}}</h3>
-    <div v-if="checkLogin">
-      <nuxt-link :to="'monographs/edit/' + id"><h4>Edit</h4></nuxt-link> |
-      <nuxt-link :to="'monographs/' + id"><h4>Details</h4></nuxt-link>
-    </div>
+    <nuxt-link :to="'monographs/' + id">
+      <div v-for="symbol in symbols" :key="symbol.index">
+        <h2>{{symbol.letters}}</h2>
+        <h2 v-if="symbol.quantity >1">
+          <sub>{{symbol.quantity}}</sub>
+        </h2>
+      </div>
+      <h3>{{name}}</h3>
+      <div v-if="checkLogin">
+        <nuxt-link :to="'monographs/edit/' + id">
+          <h4>Edit </h4>
+        </nuxt-link>|
+        <nuxt-link :to="'monographs/' + id">
+          <h4>Details</h4>
+        </nuxt-link>
+      </div>
+    </nuxt-link>
   </div>
 </template>
 
@@ -45,7 +51,8 @@ export default {
   margin: 1rem 0;
 }
 
-h2, h4 {
+h2,
+h4 {
   display: inline;
 }
 </style>

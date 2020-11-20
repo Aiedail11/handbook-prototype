@@ -29,12 +29,12 @@ export default {
   components: {
     Monograph,
     SearchGases
-  },
+  },/*
   data() {
     return {
       monographs: this.$store.state.monographs.list
     };
-  },
+  },*/
   async created() {},
   head() {
     return {
@@ -53,6 +53,12 @@ export default {
   methods: {
     async searchText(text) {
       console.log("You tried to search for: " + text);
+    }
+  },
+  computed: {
+    monographs(){
+      console.log(this.$store.state.monographs.list);
+      return this.$store.state.monographs.list;
     }
   }
 };
