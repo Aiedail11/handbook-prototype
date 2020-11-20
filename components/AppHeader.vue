@@ -1,10 +1,10 @@
 <template>
   <header class="header">
     <h1 class="title">CGA Handbook</h1>
-    <div v-if="checkLogin">
+    <div v-if="!checkLogin">
       <ul>
         <li>
-          <nuxt-link to='/'>Home</nuxt-link>
+          <nuxt-link to="/">Home</nuxt-link>
         </li>
         <li>
           <button @click="toggleLogin">Login</button>
@@ -20,7 +20,7 @@
           <nuxt-link to="/">Home</nuxt-link>
         </li>
         <li>
-            <nuxt-link to="/monographs/create">Create New Monograph</nuxt-link>
+          <nuxt-link to="/monographs/create">Create New Monograph</nuxt-link>
         </li>
         <li>
           <button @click="toggleLogin">Log off</button>
@@ -34,27 +34,18 @@
 </template>
 
 <script>
-import AuthenticationService from "../services/auth"
-
-const authService = require(AuthenticationService);
+//import { mapMutations } from "vuex";
 
 export default {
   name: "AppHeader",
-  data() {
-    return {
-      login: false
-    };
-  },
   methods: {
     toggleLogin() {
-      this.login = !this.login;
-      authService.login = !authService.login;
-      console.log("logged in? " + authService.login);
+      this.$store.commit('auth/toggleLogin');
     }
   },
   computed: {
     checkLogin() {
-      return this.login == true;
+      return this.$store.state.auth.login;
     }
   }
 };

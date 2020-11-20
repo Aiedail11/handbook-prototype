@@ -23,7 +23,7 @@ import axios from "axios";
 import Monograph from "../components/Monograph";
 import SearchGases from "../components/SearchGases";
 //import SymbolElement from "../components/SymbolElement.vue";
-import MonoAPI from "../services/monoAPI"
+//import MonoAPI from "../services/monoAPI"
 
 export default {
   components: {
@@ -32,16 +32,7 @@ export default {
   },
   data() {
     return {
-      monographs: [
-        { symbols: [{ letters: "Ar", quantity: 1 }], name: "Argon", id: "6" },
-        { symbols: [{ letters: "N", quantity: 2 }], name: "Nitrogen", id: "5" },
-        { symbols: [{ letters: "O", quantity: 2 }], name: "Oxygen", id: "1" },
-        {
-          symbols: [{ letters: "COCl", quantity: 2 }],
-          name: "Phosgene",
-          id: "2"
-        }
-      ]
+      monographs: this.$store.state.monographs.list
     };
   },
   async created() {},

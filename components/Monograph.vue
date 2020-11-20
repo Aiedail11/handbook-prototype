@@ -33,7 +33,7 @@ export default {
       return true;
     },
     checkLogin() {
-      return this.login;
+      return this.$store.state.auth.login;
     }
   }
 };
