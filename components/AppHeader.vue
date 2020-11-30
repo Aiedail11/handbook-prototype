@@ -10,7 +10,7 @@
           <button @click="toggleLogin">Login</button>
         </li>
         <li>
-          <nuxt-link to="/Publications">Publications</nuxt-link>
+          <a href="https://portal.cganet.com/Publication/index.aspx">Publications</a>
         </li>
       </ul>
     </div>
@@ -26,7 +26,7 @@
           <button @click="toggleLogin">Log off</button>
         </li>
         <li>
-          <nuxt-link to="/Publications">Publications</nuxt-link>
+          <a href="https://portal.cganet.com/Publication/index.aspx">Publications</a>
         </li>
       </ul>
     </div>
@@ -40,7 +40,7 @@ export default {
   name: "AppHeader",
   methods: {
     toggleLogin() {
-      this.$store.commit('auth/toggleLogin');
+      this.$store.commit("auth/toggleLogin");
     }
   },
   computed: {

@@ -17,30 +17,60 @@ export const state = () => ({
             name: "Phosgene",
             id: "4",
             synonyms: ['emily', 'haggard']
-        }]
+        }],
+    total: 4
 })
 
 export const mutations = {
     create(state, monograph) {
         if (!monograph) return;
-        if (!Array.isArray(monograph.symbolArray)) return;
-        if (!Number.isInteger(monograph.id)) return;
+        if (!Array.isArray(monograph.symbols)) return;
+        monograph.id = state.total + 1;
+        state.total++;
+
         if (monograph.name == null) return;
-        for (let i = 0; i < monograph.symbolArray.length; i++) {
-            if (monograph.symbolArray[i].letters == null) return;
-            if (!Number.isInteger(monograph.symbolArray[i].quantity)
-                || monograph.symbolArray[i].quantity < 1) return;
+
+        for (let i = 0; i < monograph.symbols.length; i++) {
+            if (monograph.symbols[i].letters == null) return;
+            if (!Number.isInteger(monograph.symbols[i].quantity)
+                || monograph.symbols[i].quantity < 1) return;
         }
         state.list.push(monograph);
+
+        state.list.sort((a, b) => {
+            if (b.id > a.id) {
+                return -1;
+            }
+            return 1;
+        });
+
     },
-    update(state, monograph) {
-        this.delete(state, monograph.id);
-        this.create(state, monograph);
-    },
+
     delete(state, id) {
         state.list = state.list.filter((value, index, arr) => {
             return value.id != id;
         });
+    },
+    update(state, monograph) {
+        this.delete(state, monograph.id);
+        this.create(state, monograph);
     }
 
+}
+
+export const getters = {
+    testGet() {
+        return "test successful";
+    },
+    getMonographById: (state) =>
+        (id) => {
+            // return "test";
+            return state.list.find((value, index, arr) => {
+                return value.id == id;
+            });
+
+        },
+    testParam(msg) {
+        return msg;
+    }
 }

@@ -25,6 +25,7 @@ import SearchGases from "../components/SearchGases";
 //import SymbolElement from "../components/SymbolElement.vue";
 //import MonoAPI from "../services/monoAPI"
 
+
 export default {
   components: {
     Monograph,
@@ -57,7 +58,6 @@ export default {
   },
   computed: {
     monographs(){
-      console.log(this.$store.state.monographs.list);
       return this.$store.state.monographs.list;
     }
   }

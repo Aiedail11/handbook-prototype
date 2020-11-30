@@ -8,15 +8,13 @@
         </h2>
       </div>
       <h3>{{name}}</h3>
-      <div v-if="checkLogin">
-        <nuxt-link :to="'monographs/edit/' + id">
-          <h4>Edit </h4>
-        </nuxt-link>|
-        <nuxt-link :to="'monographs/' + id">
-          <h4>Details</h4>
-        </nuxt-link>
-      </div>
     </nuxt-link>
+    <div v-if="checkLogin">
+      <nuxt-link :to="'monographs/edit/' + id">
+        <h4>Edit | </h4>
+      </nuxt-link>
+      <h4 @click="onDelete">Delete</h4>
+    </div>
   </div>
 </template>
 
@@ -40,6 +38,16 @@ export default {
     },
     checkLogin() {
       return this.$store.state.auth.login;
+    }
+  },
+  methods: {
+    onDelete() {
+      try {
+        this.$store.commit("monographs/delete", this.id);
+      } catch (e) {
+        // console.log("error");
+        console.log(e);
+      }
     }
   }
 };
