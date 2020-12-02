@@ -31,7 +31,20 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '...', method: 'post', propertyName: 'token'},
+          logout: { url: '... ', method: 'post'},
+          user: { url: '...', method: 'get', propertyName: 'user'}
+        }
+      }
+    }
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},

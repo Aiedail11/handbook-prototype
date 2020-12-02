@@ -56,6 +56,7 @@
 import { mapGetters } from "vuex";
 
 export default {
+  middleware: ['auth'],
   computed: {
     monograph() {
       let monograph = this.getById(this.$route.params.id)

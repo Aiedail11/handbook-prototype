@@ -47,7 +47,7 @@
         <h2>UN Number:</h2>
         <input type="text" v-model="monograph.unNumber" />
       </div>
-      <input type="submit" value="Submit"  @submit.prevent="onSubmit" />
+      <input type="submit" value="Submit" @submit.prevent="onSubmit" />
     </form>
   </div>
 </template>
@@ -57,6 +57,7 @@
 // Maybe https://vuex.vuejs.org/guide/modules.html#module-local-state will help
 
 export default {
+  middleware: ["auth"],
   data() {
     return {
       monograph: {
@@ -71,9 +72,9 @@ export default {
         tcClassification: "",
         tcLabel: "",
         unNumber: "",
-        miscProperties: []
+        miscProperties: [],
       },
-      symbolText: ""
+      symbolText: "",
     };
   },
   methods: {
@@ -83,13 +84,13 @@ export default {
       try {
         this.$store.commit("monographs/create", this.monograph);
       } catch (e) {
-       // console.log("error");
+        // console.log("error");
         console.log(e);
       }
       //console.log(this.$store.state.monographs.list);
-      this.$router.push({name: 'index'});
-    }
-  }
+      this.$router.push({ name: "index" });
+    },
+  },
 };
 </script>
 

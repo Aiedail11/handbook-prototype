@@ -9,7 +9,7 @@
       </div>
       <h3>{{name}}</h3>
     </nuxt-link>
-    <div v-if="checkLogin">
+    <div v-if="$auth.loggedIn">
       <nuxt-link :to="'monographs/edit/' + id">
         <h4>Edit | </h4>
       </nuxt-link>

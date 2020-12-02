@@ -1,16 +1,21 @@
 <template>
   <header class="header">
     <h1 class="title">CGA Handbook</h1>
-    <div v-if="!checkLogin">
+    <div v-if="$auth.loggedIn">
       <ul>
         <li>
           <nuxt-link to="/">Home</nuxt-link>
         </li>
         <li>
-          <button @click="toggleLogin">Login</button>
+          <nuxt-link to="/monographs/create">Create New Monograph</nuxt-link>
         </li>
         <li>
-          <a href="https://portal.cganet.com/Publication/index.aspx">Publications</a>
+          <button @click="clickLogout">Log off</button>
+        </li>
+        <li>
+          <a href="https://portal.cganet.com/Publication/index.aspx"
+            >Publications</a
+          >
         </li>
       </ul>
     </div>
@@ -20,13 +25,12 @@
           <nuxt-link to="/">Home</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/monographs/create">Create New Monograph</nuxt-link>
+          <button @click="clickLogin">Login</button>
         </li>
         <li>
-          <button @click="toggleLogin">Log off</button>
-        </li>
-        <li>
-          <a href="https://portal.cganet.com/Publication/index.aspx">Publications</a>
+          <a href="https://portal.cganet.com/Publication/index.aspx"
+            >Publications</a
+          >
         </li>
       </ul>
     </div>
@@ -38,16 +42,35 @@
 
 export default {
   name: "AppHeader",
+  data() {
+    return {
+      login: {
+        username: "",
+        password: "",
+      },
+    };
+  },
   methods: {
     toggleLogin() {
-      this.$store.commit("auth/toggleLogin");
-    }
+      this.$store.commit("myauth/toggleLogin");
+    },
+    async clickLogin() {
+      try {
+        let response = await this.$auth.loginWith('local', {data: this.login});
+        console.log("clicked login");
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async clickLogout() {
+      try {
+        let response = await this.$auth.logoutWith('local', {});
+        console.log("clicked logout");
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
-  computed: {
-    checkLogin() {
-      return this.$store.state.auth.login;
-    }
-  }
 };
 </script>
 
