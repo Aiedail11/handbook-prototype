@@ -12,7 +12,12 @@
     "@nuxtjs/axios": "^5.12.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "tiptap-vuetify": "^2.24.0",
     "typescript": "^4.0.5",
+    "vue-wysiwyg": "^1.7.2",
+    "vuetify": "^2.3.19",
     "vuex": "^3.5.1"
   },
   "devDependencies": {}

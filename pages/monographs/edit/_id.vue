@@ -47,21 +47,33 @@
         <h2>UN Number:</h2>
         <input type="text" v-model="monograph.unNumber" />
       </div>
-      <input type="submit" value="Submit"  @submit.prevent="onSubmit" />
+      <input type="submit" value="Submit" @submit.prevent="onSubmit" />
     </form>
+    <Editor v-model="info"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
+import Editor from "../../../components/Editor";
+
 export default {
+  data() {
+    return {
+      symbolText: " ",
+      info: "This is a custom property.",
+    };
+  },
+  components: {
+    Editor
+  },
   computed: {
     monograph() {
-      let monograph = this.getById(this.$route.params.id)
-      if(monograph == null){
-        console.log('redirect here');
-        this.$router.push({name: 'index'});
+      let monograph = this.getById(this.$route.params.id);
+      if (monograph == null) {
+        console.log("redirect here");
+        this.$router.push({ name: "index" });
         return {};
       }
       return monograph;
@@ -75,14 +87,15 @@ export default {
       try {
         this.$store.commit("monographs/update", this.monograph);
       } catch (e) {
-       // console.log("error");
+        // console.log("error");
         console.log(e);
       }
-      this.$router.push({name: 'index'});
+      this.$router.push({ name: "index" });
     }
   }
 };
 </script>
 
 <style>
+@import "../../../node_modules/vue-wysiwyg/dist/vueWysiwyg.css";
 </style>
